@@ -215,3 +215,7 @@ FakesAssemblies/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+
+doc/ASP.NET Web API 2.pdf
+doc/WebApi2Book-completed
+lib/
