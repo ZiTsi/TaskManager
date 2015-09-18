@@ -12,5 +12,3 @@ namespace TaskManager.Web.Common.Routing
         }
     }
 }
-
-telos 61

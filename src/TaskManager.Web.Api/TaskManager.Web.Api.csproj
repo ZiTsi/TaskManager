@@ -143,6 +143,16 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManager.Web.Api.Models\TaskManager.Web.Api.Models.csproj">
+      <Project>{7eb3a37b-4ae8-42f2-8f4d-a485af6365f8}</Project>
+      <Name>TaskManager.Web.Api.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskManager.Web.Common\TaskManager.Web.Common.csproj">
+      <Project>{64ddfb2c-9e7c-4299-a336-d7e38db4fc9e}</Project>
+      <Name>TaskManager.Web.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
