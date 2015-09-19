@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Dispatcher;
+using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Routing;
+using System.Web.Http.Tracing;
+using TaskManager.Common.Logging;
 using TaskManager.Web.Common;
+using TaskManager.Web.Common.ErrorHandling;
 using TaskManager.Web.Common.Routing;
 
 namespace TaskManager.Web.Api
@@ -31,6 +32,12 @@ namespace TaskManager.Web.Api
             config.MapHttpAttributeRoutes(constraintsResolver);
             config.Services.Replace(typeof(IHttpControllerSelector), new NamespaceHttpControllerSelector(config));
 
+            // config.EnableSystemDiagnosticsTracing();
+            config.Services.Replace(typeof(ITraceWriter),
+                    new SimpleTraceWriter(WebContainerManager.Get<ILogManager>()));
+
+            config.Services.Add(typeof(IExceptionLogger),
+                    new SimpleExceptionLogger(WebContainerManager.Get<ILogManager>()));
         }
     }
 }

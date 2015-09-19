@@ -2,6 +2,7 @@
 using Ninject;
 using TaskManager.Common;
 using TaskManager.Common.Logging;
+using TaskManager.Web.Common;
 
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -46,6 +47,7 @@ namespace TaskManager.Web.Api
                           .BuildSessionFactory();
             container.Bind<ISessionFactory>().ToConstant(sessionFactory);
             container.Bind<ISession>().ToMethod(CreateSession).InRequestScope();
+            container.Bind<IActionTransactionHelper>().To<ActionTransactionHelper>().InRequestScope();
         }
 
         private ISession CreateSession(IContext context)
