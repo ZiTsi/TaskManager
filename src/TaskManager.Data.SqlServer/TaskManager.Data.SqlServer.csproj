@@ -57,11 +57,16 @@
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Mapping\VersionedClassMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryProcessors\AddTaskQueryProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TaskManager.Common\TaskManager.Common.csproj">
+      <Project>{77ac8d16-6b6e-4392-a58e-01500b7a8b6d}</Project>
+      <Name>TaskManager.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaskManager.Data\TaskManager.Data.csproj">
       <Project>{5a8378ca-9ce8-4978-8e88-aaa5b03984d3}</Project>
       <Name>TaskManager.Data</Name>

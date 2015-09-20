@@ -121,18 +121,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AutoMappingConfiguration\AutoMapperInfo.txt" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfigurator.cs" />
     <Compile Include="App_Start\NinjectConfigurator.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AutoMappingConfiguration\NewTaskToTaskEntityAutoMapperTypeConfigurator.cs" />
+    <Compile Include="AutoMappingConfiguration\NewTaskV2ToTaskEntityAutoMapperTypeConfigurator.cs" />
+    <Compile Include="AutoMappingConfiguration\StatusEntityToStatusAutoMapperTypeConfigurator.cs" />
+    <Compile Include="AutoMappingConfiguration\StatusToStatusEntityAutoMapperTypeConfigurator.cs" />
+    <Compile Include="AutoMappingConfiguration\TaskAssigneesResolver.cs" />
+    <Compile Include="AutoMappingConfiguration\TaskEntityToTaskAutoMapperTypeConfigurator.cs" />
+    <Compile Include="AutoMappingConfiguration\TaskToTaskEntityAutoMapperTypeConfigurator.cs" />
+    <Compile Include="AutoMappingConfiguration\UserEntityToUserAutoMapperTypeConfigurator.cs" />
+    <Compile Include="AutoMappingConfiguration\UserToUserEntityAutoMapperTypeConfigurator.cs" />
     <Compile Include="Controllers\V1\TasksController.cs" />
     <Compile Include="Controllers\V2\TasksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MaintenanceProcessing\AddTaskMaintenanceProcessor.cs" />
+    <Compile Include="MaintenanceProcessing\IAddTaskMaintenanceProcessor.cs" />
+    <Compile Include="MaintenanceProcessing\LocationLinkCalculator.cs" />
+    <Compile Include="MaintenanceProcessing\TaskCreatedActionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -146,7 +163,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaskManager.Common\TaskManager.Common.csproj">
@@ -156,6 +172,10 @@
     <ProjectReference Include="..\TaskManager.Data.SqlServer\TaskManager.Data.SqlServer.csproj">
       <Project>{3c707704-3619-49e9-8715-bbf4646a5d2b}</Project>
       <Name>TaskManager.Data.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskManager.Data\TaskManager.Data.csproj">
+      <Project>{5a8378ca-9ce8-4978-8e88-aaa5b03984d3}</Project>
+      <Name>TaskManager.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\TaskManager.Web.Api.Models\TaskManager.Web.Api.Models.csproj">
       <Project>{7eb3a37b-4ae8-42f2-8f4d-a485af6365f8}</Project>
