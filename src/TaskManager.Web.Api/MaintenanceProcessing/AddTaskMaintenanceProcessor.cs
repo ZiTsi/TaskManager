@@ -1,6 +1,8 @@
 ﻿using TaskManager.Common.TypeMapping;
 using TaskManager.Data.QueryProcessors;
 using TaskManager.Web.Api.Models;
+using System.Net.Http;
+using TaskManager.Common;
 
 namespace TaskManager.Web.Api.MaintenanceProcessing
 {
@@ -23,6 +25,15 @@ namespace TaskManager.Web.Api.MaintenanceProcessing
             _queryProcessor.AddTask(taskEntity);
 
             var task = _autoMapper.Map<Task>(taskEntity);
+
+            // ToDo: Implement link service
+            task.AddLink(new Link
+            {
+                Method = HttpMethod.Get.Method,
+                Href = "http://localhost:61271/api/v1/tasks/" + task.TaskId,
+                Rel = Constants.CommonLinkRelValues.Self
+            });
+            
             return task;
         }
     }

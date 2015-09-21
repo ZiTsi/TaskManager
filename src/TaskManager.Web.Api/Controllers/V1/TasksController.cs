@@ -28,5 +28,3 @@ namespace TaskManager.Web.Api.Controllers.V1
         }
     }
 }
-
-pg 113 : Though links won’t be fully developed
