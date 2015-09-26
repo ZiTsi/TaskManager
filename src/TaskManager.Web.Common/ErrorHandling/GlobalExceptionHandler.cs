@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Http.ExceptionHandling;
 using TaskManager.Data.Exceptions;
+using TaskManager.Common;
 
 namespace TaskManager.Web.Common.ErrorHandling
 {
@@ -17,7 +18,7 @@ namespace TaskManager.Web.Common.ErrorHandling
             if (httpException != null)
             {
                 context.Result = new SimpleErrorResult(context.Request,
-                (HttpStatusCode)httpException.GetHttpCode(), httpException.Message);
+                    (HttpStatusCode)httpException.GetHttpCode(), httpException.Message);
                 return;
             }
             if (exception is RootObjectNotFoundException)
@@ -31,6 +32,13 @@ namespace TaskManager.Web.Common.ErrorHandling
             {
                 context.Result = new SimpleErrorResult(context.Request,
                                                        HttpStatusCode.Conflict,
+                                                       exception.Message);
+                return;
+            }
+            if (exception is BusinessRuleViolationException)
+            {
+                context.Result = new SimpleErrorResult(context.Request,
+                                                       HttpStatusCode.PaymentRequired,
                                                        exception.Message);
                 return;
             }

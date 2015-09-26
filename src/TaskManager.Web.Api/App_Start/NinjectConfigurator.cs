@@ -19,6 +19,8 @@ using TaskManager.Data.QueryProcessors;
 using TaskManager.Data.SqlServer.QueryProcessors;
 using TaskManager.Web.Api.AutoMappingConfiguration;
 using TaskManager.Web.Api.MaintenanceProcessing;
+using TaskManager.Web.Api.Security;
+using TaskManager.Data.Entities;
 
 namespace TaskManager.Web.Api
 {
@@ -39,8 +41,15 @@ namespace TaskManager.Web.Api
             ConfigureAutoMapper(container);
 
             container.Bind<IDateTime>().To<DateTimeAdapter>().InSingletonScope();
+
             container.Bind<IAddTaskQueryProcessor>().To<AddTaskQueryProcessor>().InRequestScope();
-                        
+            container.Bind<IBasicSecurityService>().To<BasicSecurityService>().InSingletonScope();
+
+            container.Bind<ITaskByIdQueryProcessor>().To<TaskByIdQueryProcessor>().InRequestScope();
+            container.Bind<IUpdateTaskStatusQueryProcessor>().To<UpdateTaskStatusQueryProcessor>().InRequestScope();
+            container.Bind<IStartTaskWorkflowProcessor>().To<StartTaskWorkflowProcessor>().InRequestScope();
+            container.Bind<ICompleteTaskWorkflowProcessor>().To<CompleteTaskWorkflowProcessor>().InRequestScope();
+            container.Bind<IReactivateTaskWorkflowProcessor>().To<ReactivateTaskWorkflowProcessor>().InRequestScope();
         }
 
         private void ConfigureLog4net(IKernel container)
@@ -106,7 +115,6 @@ namespace TaskManager.Web.Api
                         .To<TaskEntityToTaskAutoMapperTypeConfigurator>()
                         .InSingletonScope();
         }
-
-
+        
     }
 }

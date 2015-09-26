@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\IAddTaskQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\IAddTaskQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\ITaskByIdQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\IUpdateTaskStatusQueryProcessor.cs" />
     <Compile Include="Entities\IVersionedEntity.cs" />
     <Compile Include="Entities\Status.cs" />
     <Compile Include="Entities\Task.cs" />
