@@ -20,7 +20,7 @@ using TaskManager.Data.SqlServer.QueryProcessors;
 using TaskManager.Web.Api.AutoMappingConfiguration;
 using TaskManager.Web.Api.MaintenanceProcessing;
 using TaskManager.Web.Api.Security;
-using TaskManager.Data.Entities;
+using TaskManager.Web.Api.InquiryProcessing;
 
 namespace TaskManager.Web.Api
 {
@@ -50,6 +50,8 @@ namespace TaskManager.Web.Api
             container.Bind<IStartTaskWorkflowProcessor>().To<StartTaskWorkflowProcessor>().InRequestScope();
             container.Bind<ICompleteTaskWorkflowProcessor>().To<CompleteTaskWorkflowProcessor>().InRequestScope();
             container.Bind<IReactivateTaskWorkflowProcessor>().To<ReactivateTaskWorkflowProcessor>().InRequestScope();
+
+            container.Bind<ITaskByIdInquiryProcessor>().To<TaskByIdInquiryProcessor>().InRequestScope();
         }
 
         private void ConfigureLog4net(IKernel container)

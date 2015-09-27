@@ -23,5 +23,15 @@ namespace TaskManager.Web.Api.Models
         {
             Links.Add(link);
         }
+
+        private bool _shouldSerializeAssignees;
+        public void SetShouldSerializeAssignees(bool shouldSerialize)
+        {
+            _shouldSerializeAssignees = shouldSerialize;
+        }
+        public bool ShouldSerializeAssignees()
+        {
+            return _shouldSerializeAssignees;
+        }
     }
 }

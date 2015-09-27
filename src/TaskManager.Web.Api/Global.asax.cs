@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using TaskManager.Common.Logging;
+using TaskManager.Common.Security;
 using TaskManager.Common.TypeMapping;
 using TaskManager.Web.Api.Security;
 using TaskManager.Web.Common;
@@ -20,10 +21,14 @@ namespace TaskManager.Web.Api
         private void RegisterHandlers()
         {
             var logManager = WebContainerManager.Get<ILogManager>();
+            var userSession = WebContainerManager.Get<IUserSession>();
             var basicSecService = WebContainerManager.Get<IBasicSecurityService>();
 
             GlobalConfiguration.Configuration.MessageHandlers.Add(
                 new BasicAuthenticationMessageHandler(logManager, basicSecService));
+
+            GlobalConfiguration.Configuration.MessageHandlers.Add(
+                new TaskDataSecurityMessageHandler(logManager, userSession));
         }
 
         protected void Application_Error()
